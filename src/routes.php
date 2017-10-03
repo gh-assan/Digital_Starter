@@ -15,6 +15,9 @@ $app->get('/songs/{id:[0-9]+}', "SongsController:getAction");
 
 
 
+$app->get('/api/songs/latest', "SongsApi:latestAction");
+
+
 /*
 $app->get('/[{name}]', function (Request $request, Response $response, array $args) {
     // Sample log message

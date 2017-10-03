@@ -16,15 +16,23 @@ class SongModel extends CrudModel implements SongModelInterface
      * @var int
      */
     protected $id;
+    
     /**
      * @var string
      */
     protected $name;
 
 
-    public function __construct(string $name = null )
+    /**
+     * @var string  
+     */
+    protected $publishDate;
+    
+
+    public function __construct(string $name = null , string $publishDate = null )
     {
         $this->name    = $name;
+        $this->publishDate    = $publishDate;
     }
 
 
@@ -68,5 +76,26 @@ class SongModel extends CrudModel implements SongModelInterface
 
         return $this;
     }
+
+    /**
+     * @return string 
+     */
+    public function getPublishDate(): string 
+    {
+        return $this->publishDate;
+    }
+
+    /**
+     * @param string  $publishDate
+     *
+     * @return SongModelInterface
+     */
+    public function setPublishDate(string  $publishDate): SongModelInterface
+    {
+        $this->publishDate = $publishDate;
+
+        return $this;
+    }
+
 
 }

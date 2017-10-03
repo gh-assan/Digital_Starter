@@ -42,6 +42,7 @@
                     <tr>
                       <th>#</th>
                       <th>Song Name</th> 
+                      <th>Publish Date</th> 
                       <th>Actions</th>                     
                     </tr>
                 </thead>
@@ -51,6 +52,7 @@
                         <tr>
                           <td scope="row"><?php echo $song->getId() ?></td>
                           <td><?php echo $song->getName() ?></td>
+                          <td><?php echo $song->getPublishDate() ?></td>
                           <td>
                               
                                 <div class="dropdown">

@@ -54,6 +54,13 @@ $container['SongsService'] = function ($c) {
 	return $service;
 };
 
+// transformers
+$container['SongTransformer'] = function ($c) {
+    
+	$transformer = new g\transformer\SongTransformer();
+	return $transformer;
+};
+
 
 // Controllers 
 $container['SongsController'] = function ($c) {
@@ -63,5 +70,10 @@ $container['SongsController'] = function ($c) {
 };
 
 
-
+// API
+$container['SongsApi'] = function ($c) {
+    
+	$api = new g\api\SongsApi($c['SongsService'] , $c['SongTransformer']);
+	return $api;
+};
 

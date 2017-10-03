@@ -77,8 +77,9 @@ class SongsController
 		$body = $request->getParsedBody();
 
 		$name = $body['name'];
+		$publishDate = $body['publishDate'];
 
-		$song = new SongModel($name);
+		$song = new SongModel($name,$publishDate);
 
 		$song = $this->service->create($song); 		
 		

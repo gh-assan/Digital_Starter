@@ -97,6 +97,22 @@ class SongsService implements SongsServiceInterface
 
 
 
+    /**
+     * @param int $rows
+     * 
+     * @return SongModel[]|null
+     * @throws MysqlException
+     */
+    public function loadLatest($rows = SongsServiceInterface::LATEST_ROWS): ?array{
+
+        $model = $this->store->read(
+                (new ReadQueryBuilder())->addSorting(SongModelInterface::COLUMN_PUBLISH_DATE , 'desc' )
+                                        ->setLimit($rows)
+        );
+
+        return $model;   
+    }
+
 
 
 }
