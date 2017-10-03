@@ -29,6 +29,9 @@
             "Tests\\": "tests/"
         }
     },
+    "autoload": {
+        "psr-4": { "g\\": "src/g/" }
+    },
     "config": {
         "process-timeout" : 0
     },
