@@ -2,8 +2,11 @@
 <html>
     <head>
         <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Songs</title>
         <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
         <style>
             body {
                 margin: 50px 0 0 0;
@@ -26,12 +29,57 @@
         </style>
     </head>
     <body>
+
+        <div class="container"> 
+
         <h1>Songs List</h1>
         
         <?php if (isset($songs)) : ?>
-            <h2>number of songs <?= htmlspecialchars($name); ?>!</h2>
+            <h2>number of songs <?= htmlspecialchars(count($songs)); ?>!</h2> <a href="songs/add">Add New</a>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Song Name</th> 
+                      <th>Actions</th>                     
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <?php foreach ($songs as $key => $song) {?>
+                        <tr>
+                          <td scope="row"><?php echo $song->getId() ?></td>
+                          <td><?php echo $song->getName() ?></td>
+                          <td>
+                              
+                                <div class="dropdown">
+                                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Dropdown
+                                    <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li><a href="#">Edit</a></li>
+                                    <li><a href="#">Delete</a></li>                                    
+                                  </ul>
+                                </div>
+
+                          </td>
+                        </tr>                
+                    <?php } ?>
+
+                </tbody>
+            </table>    
         <?php else: ?>
             <p>Try <a href="http://www.slimframework.com">SlimFramework</a></p>
         <?php endif; ?>
+
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+
     </body>
 </html>

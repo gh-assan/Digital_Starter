@@ -3,25 +3,27 @@
 namespace g\controller;
 
 use g\model\SongModelInterface;
-use g\service\SongServiceInterface;
+use g\service\SongsServiceInterface;
+
+use \Psr\Http\Message\ServerRequestInterface as IRequest;
+use \Psr\Http\Message\ResponseInterface as IResponse;
+
 
 use Slim\Views\PhpRenderer;
 
 /**
  * @package Test\Crud
  */
-class SongsContrller 
+class SongsController 
 {
 
 
 	protected $service;	
-	protected $model;	
 	protected $renderer;	
 	
-	public function __construct(SongServiceInterface $service , SongModelInterface $model , PhpRenderer $renderer )
+	public function __construct(SongsServiceInterface $service  , PhpRenderer $renderer )
 	{
 		$this->service    = $service;
-		$this->model      = $model;
 		$this->renderer   = $renderer;
 	}
 	

@@ -54,3 +54,14 @@ $container['SongsService'] = function ($c) {
 	return $service;
 };
 
+
+// Controllers 
+$container['SongsController'] = function ($c) {
+    
+	$controller = new g\controller\SongsController($c['SongsService'] , $c['renderer']);
+	return $controller;
+};
+
+
+
+
