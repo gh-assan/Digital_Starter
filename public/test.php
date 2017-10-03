@@ -29,4 +29,10 @@ var_dump($service->loadList());
 */
 
 
+/*
 var_dump($service->loadSingle(1));
+*/
+
+//var_dump($service->create(new g\model\SongModel("test create 2") ));
+
+var_dump($service->delete($service->loadSingle(7) ));

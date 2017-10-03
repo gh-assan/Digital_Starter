@@ -22,4 +22,21 @@ interface SongsServiceInterface
      * @throws MysqlException
      */
     public function loadSingle($id): ?SongModelInterface;
+
+
+    /**
+     * @param SongModelInterface $song
+     *
+     * @return SongModelInterface
+     * @throws MysqlException
+     */
+    public function create($song): SongModelInterface;
+
+    /**
+     * @param SongModelInterface $song
+     *
+     * @return bool
+     * @throws MysqlException
+     */
+    public function delete($song): bool;
 }

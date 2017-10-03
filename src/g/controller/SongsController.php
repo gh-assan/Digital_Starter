@@ -3,6 +3,7 @@
 namespace g\controller;
 
 use g\model\SongModelInterface;
+use g\model\SongModel;
 use g\service\SongsServiceInterface;
 
 use \Psr\Http\Message\ServerRequestInterface as IRequest;
@@ -58,6 +59,62 @@ class SongsController
 		];
 
 		return $this->renderer->render($response, 'song_edit.phtml', $data);
+
+	}
+
+
+	public function addAction(IRequest $request, IResponse $response, $args){
+	
+		$data = [];
+		return $this->renderer->render($response, 'song_create.phtml', $data);
+
+	}
+
+
+	public function createAction(IRequest $request, IResponse $response, $args){
+	
+		
+		$body = $request->getParsedBody();
+
+		$name = $body['name'];
+
+		$song = new SongModel($name);
+
+		$song = $this->service->create($song); 		
+		
+		$data = [
+              "message" => "Song created Successfully"
+		];
+
+		return $this->renderer->render($response, 'songs.phtml', $data);
+
+	}
+
+
+	public function deleteAction(IRequest $request, IResponse $response, $args){
+	
+		
+		$song = $this->service->loadSingle($request->getAttribute("id")); 		
+
+		if (null == $song) {
+			//----
+		}
+
+
+		$result = $this->service->delete($song); 		
+
+		if( $result ) { 
+		
+			$data = [
+	              "message" => "Song deleted Successfully"
+			];
+		}else{
+			$data = [
+	              "message" => "failed to delete the Song"
+			];
+		}
+
+		return $this->renderer->render($response, 'songs.phtml', $data);
 
 	}
 

@@ -20,6 +20,14 @@ class SongModel extends CrudModel implements SongModelInterface
      * @var string
      */
     protected $name;
+
+
+    public function __construct(string $name = null )
+    {
+        $this->name    = $name;
+    }
+
+
     
     /**
      * @return int
