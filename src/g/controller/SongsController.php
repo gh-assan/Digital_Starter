@@ -39,15 +39,27 @@ class SongsController
 	public function listAction(IRequest $request, IResponse $response, $args){
 	
 		$songs = $this->service->loadList(); 
-		//$response = $response->withJson($result);
-
+		
 		$data = [
               "songs" => $songs
 		];
 
 		return $this->renderer->render($response, 'songs.phtml', $data);
 
-		//return $response;		
 	}
+
+
+	public function getAction(IRequest $request, IResponse $response, $args){
+	
+		$song = $this->service->loadSingle($request->getAttribute("id")); 		
+		
+		$data = [
+              "song" => $song
+		];
+
+		return $this->renderer->render($response, 'song_edit.phtml', $data);
+
+	}
+
 	
 }

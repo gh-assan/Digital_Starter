@@ -11,8 +11,6 @@ use g\model\SongModelInterface;
  */
 class SongModel extends CrudModel implements SongModelInterface
 {
-    const COLUMN_ID = 'id';
-    const COLUMN_NAME = 'name';
     
     /**
      * @var int

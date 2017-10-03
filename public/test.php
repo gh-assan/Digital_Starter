@@ -24,4 +24,9 @@ var_dump($sotre->read());
 
 $service = $container['SongsService'];
 
+/*
 var_dump($service->loadList());
+*/
+
+
+var_dump($service->loadSingle(1));

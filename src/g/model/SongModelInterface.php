@@ -6,6 +6,10 @@ use Simplon\Mysql\Crud\CrudModelInterface;
 
 interface SongModelInterface extends CrudModelInterface
 {
+
+    const COLUMN_ID = 'id';
+    const COLUMN_NAME = 'name';
+    
     
     /**
      * @return int

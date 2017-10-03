@@ -6,6 +6,7 @@ use Slim\Http\Response;
 // Routes
 
 $app->get('/songs', "SongsController:listAction");
+$app->get('/songs/{id}', "SongsController:getAction");
 
 /*
 $app->get('/[{name}]', function (Request $request, Response $response, array $args) {

@@ -32,46 +32,26 @@
 
         <div class="container"> 
 
-        <h1>Songs List</h1>
+        <h1>Songs Edit</h1>
         
-        <?php if (isset($songs)) : ?>
-            <h2>number of songs <?= htmlspecialchars(count($songs)); ?>!</h2> <a href="songs/add">Add New</a>
+        <?php if (isset($song)) : ?>
+            
+            <form>
+              <div class="form-group">
+                <input type="hidden" id="songId" value="<?php echo $song->getId() ?>" >                
+              </div>
+              
+              <div class="form-group">
+                <label for="songName">Name</label>
+                <input type="text" class="form-control" id="songName" placeholder="Name" value="<?php echo $song->getName() ?>">
+              </div>
 
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Song Name</th> 
-                      <th>Actions</th>                     
-                    </tr>
-                </thead>
-                <tbody>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </form>
 
-                    <?php foreach ($songs as $key => $song) {?>
-                        <tr>
-                          <td scope="row"><?php echo $song->getId() ?></td>
-                          <td><?php echo $song->getName() ?></td>
-                          <td>
-                              
-                                <div class="dropdown">
-                                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    Dropdown
-                                    <span class="caret"></span>
-                                  </button>
-                                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="/songs/<?php echo $song->getId()?>" >Edit</a></li>
-                                    <li><a href="#">Delete</a></li>                                    
-                                  </ul>
-                                </div>
 
-                          </td>
-                        </tr>                
-                    <?php } ?>
-
-                </tbody>
-            </table>    
         <?php else: ?>
-            <p>Try <a href="http://www.slimframework.com">SlimFramework</a></p>
+            <p> The requested song is not found</p>
         <?php endif; ?>
 
         </div>
