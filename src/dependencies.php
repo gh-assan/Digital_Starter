@@ -47,3 +47,10 @@ $container['SongsStore'] = function ($c) {
 };
 
 
+// Services Def
+$container['SongsService'] = function ($c) {
+    
+	$service = new g\service\SongsService($c['SongsStore']);
+	return $service;
+};
+

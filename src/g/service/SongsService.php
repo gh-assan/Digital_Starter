@@ -3,7 +3,7 @@
 namespace g\service;
 
 
-use g\service\SongServiceInterface;
+use g\service\SongsServiceInterface;
 use g\store\SongsStoreInterface;
 
 
@@ -11,7 +11,7 @@ use g\store\SongsStoreInterface;
 /**
  * @package Test\Crud
  */
-class SongsService implements SongServiceInterface
+class SongsService implements SongsServiceInterface
 {
 
 	protected $store;	

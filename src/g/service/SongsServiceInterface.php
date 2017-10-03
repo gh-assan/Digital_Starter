@@ -3,7 +3,7 @@
 namespace g\service;
 
 
-interface SongServiceInterface 
+interface SongsServiceInterface 
 {
 
 	/**

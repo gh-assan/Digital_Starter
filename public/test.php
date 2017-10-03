@@ -15,7 +15,13 @@ require __DIR__ . '/../src/middleware.php';
 // Register routes
 require __DIR__ . '/../src/routes.php';
 
-
+/*
 $sotre = $container['SongsStore'];
 
 var_dump($sotre->read());
+*/
+
+
+$service = $container['SongsService'];
+
+var_dump($service->loadList());
