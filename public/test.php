@@ -38,4 +38,14 @@ var_dump($service->loadSingle(1));
 //var_dump($service->delete($service->loadSingle(7) ));
 
 
-var_dump($service->loadLatest());
+//var_dump($service->loadLatest());
+
+$data = [
+			"name" => "",
+			"publishDate" => '2017-01-41'
+        ] ;
+$form = $container['SongForm'];
+
+$form->build()->validate($data);
+
+var_dump($form->getErrors());

@@ -32,6 +32,18 @@
 
         <div class="container"> 
 
+        <?php if (isset($message)): ?>
+            
+        
+           <div class="alert alert-danger">
+                <?php echo count($message) ?> Error messages found
+                <?php foreach ($message as $key => $value) { ?>
+                     <li> <?php echo $value ["errors"][0]; ?> </li>
+                 <?php  }  ?> 
+           </div>    
+
+       <?php endif ?>      
+
         <h1>Songs Edit</h1>
         
         <?php if (isset($song)) : ?>

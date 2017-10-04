@@ -61,6 +61,12 @@ $container['SongTransformer'] = function ($c) {
 	return $transformer;
 };
 
+$container['SongFormTransformer'] = function ($c) {
+    
+	$transformer = new g\transformer\SongFormTransformer();
+	return $transformer;
+};
+
 
 // action handler
 
@@ -70,13 +76,29 @@ $container['SongActionHandler'] = function ($c) {
 
 	$getAction = new g\handler\SongGetAction($c['SongsService'] , $c['renderer']);
 	$deleteAction = new g\handler\SongDeleteAction($c['SongsService'] , $c['renderer']);
+	$createAction = new g\handler\SongCreateAction($c['SongsService'] , $c['renderer'], $c['SongFormTransformer'],$c['SongForm']);
+	$updateAction = new g\handler\SongUpdateAction($c['SongsService'] , $c['renderer'], $c['SongFormTransformer'],$c['SongForm']);
+
+
 
 	$handler->add($getAction);	
 	$handler->add($deleteAction);	
+	$handler->add($createAction);	
+	$handler->add($updateAction);	
 
 
 	return $handler;
 };
+
+
+//Form 
+$container['SongForm'] = function ($c) {
+    
+	$form = new g\form\SongForm();
+	return $form;
+};
+
+
 
 
 

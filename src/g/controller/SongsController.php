@@ -65,87 +65,20 @@ class SongsController
 
 	public function createAction(IRequest $request, IResponse $response, $args){
 	
+		$action = $request->getQueryParam("action" , 'CREATE');
 		
-		$body = $request->getParsedBody();
-
-		$name = $body['name'];
-		$publishDate = $body['publishDate'];
-
-		$song = new SongModel($name,$publishDate);
-
-		$song = $this->service->create($song); 		
-		
-		$data = [
-              "message" => "Song created Successfully"
-		];
-
-		//return $this->renderer->render($response, 'songs.phtml', $data);
-
-		return $response->withRedirect('/songs');
+		return $this->handler->handle($request,$response , $action);
 
 	}
 
 
 	public function updateAction(IRequest $request, IResponse $response, $args){
-	
 		
-		$body = $request->getParsedBody();
-
-		$name = $body['name'];
-		$publishDate = $body['publishDate'];
-
-		$song = $this->service->loadSingle($request->getAttribute("id")); 		
-
-
-		if (null == $song) {
-			//----
-		}
-
-
-
-		$song->setName($name);
-		$song->setPublishDate($publishDate);
-
-
-		$song = $this->service->update($song); 		
+		$action = $request->getQueryParam("action" , 'UPDATE');
 		
-		$data = [
-              "message" => "Song updated"
-		];
-
-		//return $this->renderer->render($response, 'songs.phtml', $data);
-
-		return $response->withRedirect('/songs');
+		return $this->handler->handle($request,$response , $action);
 
 	}
 
 
-	public function deleteAction(IRequest $request, IResponse $response, $args){
-	
-		
-		$song = $this->service->loadSingle($request->getAttribute("id")); 		
-
-		if (null == $song) {
-			//----
-		}
-
-
-		$result = $this->service->delete($song); 		
-
-		if( $result ) { 
-		
-			$data = [
-	              "message" => "Song deleted Successfully"
-			];
-		}else{
-			$data = [
-	              "message" => "failed to delete the Song"
-			];
-		}
-
-		return $this->renderer->render($response, 'songs.phtml', $data);
-
-	}
-
-	
 }
