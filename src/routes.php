@@ -12,7 +12,7 @@ $app->get('/songs/add', "SongsController:addAction");
 $app->post('/songs/add', "SongsController:createAction");
 
 $app->get('/songs/{id:[0-9]+}', "SongsController:getAction");
-
+$app->post('/songs/{id:[0-9]+}', "SongsController:updateAction");
 
 
 $app->get('/api/songs/latest', "SongsApi:latestAction");

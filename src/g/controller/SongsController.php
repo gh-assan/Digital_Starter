@@ -86,6 +86,40 @@ class SongsController
 	}
 
 
+	public function updateAction(IRequest $request, IResponse $response, $args){
+	
+		
+		$body = $request->getParsedBody();
+
+		$name = $body['name'];
+		$publishDate = $body['publishDate'];
+
+		$song = $this->service->loadSingle($request->getAttribute("id")); 		
+
+
+		if (null == $song) {
+			//----
+		}
+
+
+
+		$song->setName($name);
+		$song->setPublishDate($publishDate);
+
+
+		$song = $this->service->update($song); 		
+		
+		$data = [
+              "message" => "Song updated"
+		];
+
+		//return $this->renderer->render($response, 'songs.phtml', $data);
+
+		return $response->withRedirect('/songs');
+
+	}
+
+
 	public function deleteAction(IRequest $request, IResponse $response, $args){
 	
 		

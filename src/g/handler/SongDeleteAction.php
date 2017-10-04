@@ -62,7 +62,9 @@ class SongDeleteAction implements ActionInterface
 			];
 		}
 
-		return $this->renderer->render($response, 'songs.phtml', $data);
+		//return $this->renderer->render($response, 'songs.phtml', $data);
+
+		return $response->withRedirect('/songs');
 
     }
 }

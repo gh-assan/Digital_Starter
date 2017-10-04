@@ -10,6 +10,7 @@ use g\model\SongModel;
 use Simplon\Mysql\QueryBuilder\ReadQueryBuilder;
 use Simplon\Mysql\QueryBuilder\CreateQueryBuilder;
 use Simplon\Mysql\QueryBuilder\DeleteQueryBuilder;
+use Simplon\Mysql\QueryBuilder\UpdateQueryBuilder;
 use Simplon\Mysql\MysqlException;
 
 
@@ -78,6 +79,32 @@ class SongsService implements SongsServiceInterface
     /**
      * @param SongModelInterface $song
      *
+     * @return SongModelInterface
+     * @throws MysqlException
+     */
+    public function update($song): SongModelInterface{
+
+        
+        if (null == $song){
+            throw new MysqlException("Can not update empty song");
+        }
+
+        if (null == $song->getId() ){
+            throw new MysqlException("Can not update empty id");
+        }
+
+        return $this->store->update(
+               (new UpdateQueryBuilder())
+                    ->setModel($song)
+                    ->addCondition(SongModelInterface::COLUMN_ID, $song->getId())
+        );
+
+    }
+
+
+    /**
+     * @param SongModelInterface $song
+     *
      * @return bool
      * @throws MysqlException
      */
@@ -90,6 +117,7 @@ class SongsService implements SongsServiceInterface
 
         return $this->store->delete(
                (new DeleteQueryBuilder())
+                    ->setModel($song)
                     ->addCondition(SongModelInterface::COLUMN_ID, $song->getId())
         );
   
