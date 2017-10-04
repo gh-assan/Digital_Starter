@@ -35,7 +35,7 @@
         <h1>Songs List</h1>
         
         <?php if (isset($songs)) : ?>
-            <h2>number of songs <?= htmlspecialchars(count($songs)); ?>!</h2> <a href="songs/add">Add New</a>
+            <h2>number of songs <?= htmlspecialchars(count($songs)); ?>! <a href="songs/add" class="btn btn-primary">Add New</a></h2> 
 
             <table class="table table-striped">
                 <thead>
@@ -57,7 +57,7 @@
                               
                                 <div class="dropdown">
                                   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    Dropdown
+                                    Actions
                                     <span class="caret"></span>
                                   </button>
                                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
