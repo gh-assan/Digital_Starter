@@ -5,6 +5,7 @@ namespace g\controller;
 use g\model\SongModelInterface;
 use g\model\SongModel;
 use g\service\SongsServiceInterface;
+use g\handler\ActionHandlerInterface;
 
 use \Psr\Http\Message\ServerRequestInterface as IRequest;
 use \Psr\Http\Message\ResponseInterface as IResponse;
@@ -21,21 +22,15 @@ class SongsController
 
 	protected $service;	
 	protected $renderer;	
+	protected $handler;	
 	
-	public function __construct(SongsServiceInterface $service  , PhpRenderer $renderer )
+	public function __construct(SongsServiceInterface $service  , PhpRenderer $renderer , ActionHandlerInterface $handler )
 	{
 		$this->service    = $service;
 		$this->renderer   = $renderer;
+		$this->handler    = $handler;
 	}
 	
-	/*
-	public function getAction(IRequest $request, IResponse $response, $args){				
-	
-		$result = $this->service->loadSingle($request->getAttribute("id")); 		
-		$response = $response->withJson($result);
-		return $response;		
-	}
-	*/
 	
 	public function listAction(IRequest $request, IResponse $response, $args){
 	
@@ -52,13 +47,10 @@ class SongsController
 
 	public function getAction(IRequest $request, IResponse $response, $args){
 	
-		$song = $this->service->loadSingle($request->getAttribute("id")); 		
 		
-		$data = [
-              "song" => $song
-		];
-
-		return $this->renderer->render($response, 'song_edit.phtml', $data);
+		$action = $request->getQueryParam("action" , 'GET');
+		
+		return $this->handler->handle($request,$response , $action);
 
 	}
 
@@ -87,7 +79,9 @@ class SongsController
               "message" => "Song created Successfully"
 		];
 
-		return $this->renderer->render($response, 'songs.phtml', $data);
+		//return $this->renderer->render($response, 'songs.phtml', $data);
+
+		return $response->withRedirect('/songs');
 
 	}
 

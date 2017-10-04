@@ -62,10 +62,28 @@ $container['SongTransformer'] = function ($c) {
 };
 
 
+// action handler
+
+$container['SongActionHandler'] = function ($c) {
+    
+	$handler = new g\handler\ActionHandler();
+
+	$getAction = new g\handler\SongGetAction($c['SongsService'] , $c['renderer']);
+	$deleteAction = new g\handler\SongDeleteAction($c['SongsService'] , $c['renderer']);
+
+	$handler->add($getAction);	
+	$handler->add($deleteAction);	
+
+
+	return $handler;
+};
+
+
+
 // Controllers 
 $container['SongsController'] = function ($c) {
     
-	$controller = new g\controller\SongsController($c['SongsService'] , $c['renderer']);
+	$controller = new g\controller\SongsController($c['SongsService'] , $c['renderer'] , $c['SongActionHandler']);
 	return $controller;
 };
 
